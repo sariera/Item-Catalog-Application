@@ -1,0 +1,39 @@
+{% include "header.html" %}
+<h1 class="header">Edit Book Item</h1>
+<form action="{{url_for('editItem' ,categories_id=categories_id, items_id=items_id, item=editedItem)}}"
+  method="POST">
+  <p>Name:</p>
+  <input type="text" size="30" name="name" placeholder = '{{item.name}}'>
+  <p>Author:</p>
+  <input type="text" size="30" name="author">
+  <p>description:</p>
+  <textarea rows="5" cols="50" maxlength="250" name="description"></textarea>
+  <p>Book Category:</p>
+  <select name="categories_id">
+    <option value="" selected="selected"></option>
+    <option value=1 >Science Books</option>
+    <option value=2 >Biography Books</option>
+    <option value=3 >Romance Books</option>
+    <option value=4 >Fantasy Books</option>
+    <option value=5 >Art Books</option>
+    <option value=6 >Recipes Books</option>
+    <option value=7 >Medicine Books</option>
+    <option value=8 >History Books</option>
+    <option value=9 >Science Fiction Books</option>
+    <option value=10 >Children Books</option>
+    <option value=11 >Music Books</option>
+  </select>
+  </br></br>
+  <p>URL of Cover Image:</p>
+  <input type="url" size="30" maxlength="250" name="preview">
+  </br></br>
+  <input type="submit" value ="Update">
+  <a href = "{{url_for('showItem',categories_id=categories_id, items_id=items_id)}}"><button type="button">Cancel</button></a>
+  </br></br>
+</form>
+<footer>
+  <a href ="https://facebook.com/abu.sarrar/" target="_blank"><img src="{{ url_for('static', filename='facebook.png') }}" alt="my facebook Link" height="24" width="30"></a>
+  <a href="https://github.com/sariera" target="_blank"><img src="{{ url_for('static', filename='github.png') }}" alt="my GitHub Link" height="24" width="24"></a>
+</footer>
+</body>
+</html>

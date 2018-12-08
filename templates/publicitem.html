@@ -1,0 +1,21 @@
+{% include "header.html" %}
+<div class="item">
+  <img src={{items.preview}} height="120" width="80"></br>
+  <h2 class="inline">Title: </h2>
+  <h2 class="inline">{{items.name}}</h2>
+  </br>
+  <h3 class="inline">Author: </h3>
+  <h3 class="inline">{{items.author}}</h3>
+  </br>
+  <h3 class="inline">Category: </h3>
+  <h3 class="inline"><a href = "{{url_for('showCategories', categories_id=categories.id)}}" style="color:black">- {{categories.name}}</a></h3>
+  </br>
+  <h3 class="description">{{items.description}}</h3>
+  </br>
+</div>
+<footer>
+  <a href ="https://facebook.com/abu.sarrar/" target="_blank"><img src="{{ url_for('static', filename='facebook.png') }}" alt="my facebook Link" height="24" width="30"></a>
+  <a href="https://github.com/sariera" target="_blank"><img src="{{ url_for('static', filename='github.png') }}" alt="my GitHub Link" height="24" width="24"></a>
+</footer>
+</body>
+</html>
