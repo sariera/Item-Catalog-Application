@@ -68,3 +68,124 @@ session.commit()
 category11 = Categories(user_id=1, name="Music")
 session.add(category11)
 session.commit()
+
+
+# Add Items into categories
+categoryItem1 = CategoryItem(user_id=1, name="Murder on Shades Mountain",
+                             description="the legal lynching of Willie \
+                               Peterson and the struggle for justice in \
+                               Jim Crow Birmingham.",
+                             categories=category8,
+                             author="Melanie Morrison",
+                             preview="https://covers.openlibrary.org/w/id/\
+                             8202951-L.jpg")
+session.add(categoryItem1)
+session.commit()
+
+categoryItem1 = CategoryItem(user_id=1, name="A nervous state",
+                             description="violence, remedies,\
+                              and reverie in colonial Congo ",
+                             categories=category7,
+                             author="Nancy Rose Hunt",
+                             preview="https://covers.openlibrary\
+                             .org/w/id/8248353-L.jpg")
+session.add(categoryItem1)
+session.commit()
+
+categoryItem1 = CategoryItem(user_id=1, name="Does a hippo go to the doctor?",
+                             description="explores and explains why animals \
+                             in the wild don't go to doctors",
+                             categories=category10,
+                             author="Harriet Ziefert",
+                             preview="https://covers.openlibrary.org\
+                             /w/id/8251993-L.jpg")
+session.add(categoryItem1)
+session.commit()
+
+
+categoryItem1 = CategoryItem(user_id=1, name="Guile",
+                             description="In the Bad Bayous, \
+                             guile--a power in the water that \
+                             changes people and objects, sometimes \
+                             for the worse--sets Yonie Watereye, 16, \
+                             on a path that puts her own life in danger \
+                             as she traces her family tree and finds\
+                             a murderer",
+                             categories=category4,
+                             author="Constance Cooper",
+                             preview="https://covers.openlibrary.org/\
+                             w/id/8223861-L.jpg")
+session.add(categoryItem1)
+session.commit()
+
+categoryItem1 = CategoryItem(user_id=1, name="Peaceful Sundays",
+                             description="The breakout first novel from \
+                             author Jimmy Pete, Peaceful Sundays is a\
+                             laugh-out-loud parody of American society",
+                             categories=category3,
+                             author="Jimmy Pete",
+                             preview="https://covers.openlibrary.org\
+                             /w/id/7898969-L.jpg")
+session.add(categoryItem1)
+session.commit()
+
+categoryItem1 = CategoryItem(user_id=1, name="Making light",
+                             description="Haydn, musical camp, \
+                            and the long shadow of German idealism ",
+                             categories=category11,
+                             author="Raymond Knapp",
+                             preview="https://covers.openlibrary.org\
+                             /w/id/8133132-L.jpg")
+session.add(categoryItem1)
+session.commit()
+
+categoryItem1 = CategoryItem(user_id=1, name="Posthumous images",
+                             description="contemporary art and memory\
+                                politics in post-civil war Lebanon ",
+                             categories=category5,
+                             author="Chad Elias",
+                             preview="https://covers.openlibrary.org/\
+                             w/id/8214195-L.jpg")
+session.add(categoryItem1)
+session.commit()
+
+categoryItem1 = CategoryItem(user_id=1, name="Always hungry? ",
+                             description="conquer cravings, retrain\
+                            your fat cells, and lose weight perman\
+                            ently",
+                             categories=category6,
+                             author="David Ludwig",
+                             preview="https://covers.openlibrary.org/w\
+                             /id/8113833-L.jpg")
+session.add(categoryItem1)
+session.commit()
+
+categoryItem1 = CategoryItem(user_id=1, name="Future shock ",
+                             description="Elena, nearly aged out of the\
+                            foster care system, is recruited along with\
+                            four other exceptional teens for a time-travel\
+                            mission that will make them rich if they survive.",
+                             categories=category9,
+                             author="Elizabeth Briggs",
+                             preview="https://covers.openlibrary.org\
+                             /w/id/8199321-L.jpg")
+session.add(categoryItem1)
+session.commit()
+
+categoryItem1 = CategoryItem(user_id=1, name="Humans Trails",
+                             description="he central theme of\
+                                the book is a conception of man\
+                                and his behavior: How man differs\
+                                from machine and whether there are\
+                                some persons who are thought to be\
+                                human beings but they are only\
+                                human-like robots, mans imitatio\
+                                ns.",
+                             categories=category1,
+                             author="Kyosti Waris",
+                             preview="https://covers.openlibrary.org\
+                             /b/id/8258750-L.jpg")
+session.add(categoryItem1)
+session.commit()
+
+print "added category items!"
