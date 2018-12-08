@@ -344,3 +344,14 @@ def deleteItem(categories_id, items_id):
         return render_template('deleteitem.html', categories_id=categories_id,
                                items_id=items_id, item=itemToDelete)
 
+
+# disconnect from the login session
+@app.route('/disconnect')
+def disconnect():
+    if 'username' in login_session:
+        gdisconnect()
+        flash("You have successfully been logged out.")
+        return redirect(url_for('showCatalog'))
+    else:
+        flash("You were not logged in")
+        return redirect(url_for('showCatalog'))
