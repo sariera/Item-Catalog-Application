@@ -323,3 +323,24 @@ def editItem(categories_id, items_id):
         return render_template('edititem.html', categories_id=categories_id,
                                items_id=items_id, item=editedItem)
 
+
+# Delete the specific item
+@app.route('/catalog/<int:categories_id>/<int:items_id>/delete',
+           methods=['GET', 'POST'])
+@login_required
+def deleteItem(categories_id, items_id):
+    itemToDelete = session.query(CategoryItem).filter_by(id=items_id).one()
+    # make sure user is the creator
+    if itemToDelete.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('You are not authorized "\
+         "to delete this item. Please create your own item in order to delete"\
+         " .');window.location = '/';}</script><body onload='myFunction()''>"
+    if request.method == 'POST':
+        session.delete(itemToDelete)
+        session.commit()
+        flash("item deleted successfully!")
+        return redirect(url_for('showCategories', categories_id=categories_id))
+    else:
+        return render_template('deleteitem.html', categories_id=categories_id,
+                               items_id=items_id, item=itemToDelete)
+
