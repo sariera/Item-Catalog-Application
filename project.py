@@ -260,3 +260,17 @@ def showCategories(categories_id):
     return render_template('category.html', categories=categories, items=items,
                            allcategories=allcategories)
 
+
+# Show the specific item:
+@app.route('/catalog/<int:categories_id>/<int:items_id>')
+def showItem(categories_id, items_id):
+    categories = session.query(Categories).filter_by(id=categories_id).one()
+    items = session.query(CategoryItem).filter_by(id=items_id).one()
+    if 'username' not in login_session or \
+            items.user_id != login_session['user_id']:
+        # make sure user logined and user is the creator
+        return render_template('publicitem.html', categories=categories,
+                               items=items)
+    else:  # if user is the creator, able to access update and delete the item
+        return render_template('item.html', categories=categories, items=items)
+
