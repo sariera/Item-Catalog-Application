@@ -43,3 +43,5 @@ def gconnect():
         response = make_response(json.dumps('Invalid state parameter.'), 401)
         response.headers['Content-Type'] = 'application/json'
         return response
+    # Obtain authorization code
+    code = request.data
