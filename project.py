@@ -230,3 +230,23 @@ def showCatalog():
     else:  # if user logined, able to access create a new item
         return render_template('catalog.html', categories=categories,
                                items=items)
+
+
+# Create new item
+@app.route('/catalog/new', methods=['GET', 'POST'])
+@login_required
+def newItem():
+    if request.method == 'POST':  # get data from the form
+        newItem = CategoryItem(name=request.form['name'],
+                               description=request.form['description'],
+                               author=request.form['author'],
+                               preview=request.form['preview'],
+                               categories_id=request.form['categories_id'],
+                               user_id=login_session['user_id'])
+        session.add(newItem)
+        session.commit()
+        flash("new movie item created!")
+        return redirect(url_for('showCatalog'))
+    else:
+        return render_template('newitem.html')
+
