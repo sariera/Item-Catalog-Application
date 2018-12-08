@@ -216,3 +216,17 @@ def login_required(f):
             return redirect('/login')
     return decorated_function
 
+
+# Main page
+@app.route('/')
+@app.route('/catalog')
+def showCatalog():
+    categories = session.query(Categories).all()
+    items = session.query(CategoryItem).order_by(
+        CategoryItem.id.desc()).limit(10)
+    if 'username' not in login_session:  # make sure user has logined
+        return render_template('publiccatalog.html', categories=categories,
+                               items=items)
+    else:  # if user logined, able to access create a new item
+        return render_template('catalog.html', categories=categories,
+                               items=items)
