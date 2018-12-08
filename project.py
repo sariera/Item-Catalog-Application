@@ -250,3 +250,13 @@ def newItem():
     else:
         return render_template('newitem.html')
 
+
+# Show items inside the category
+@app.route('/catalog/<int:categories_id>')
+def showCategories(categories_id):
+    allcategories = session.query(Categories).all()
+    categories = session.query(Categories).filter_by(id=categories_id).one()
+    items = session.query(CategoryItem).filter_by(categories_id=categories.id)
+    return render_template('category.html', categories=categories, items=items,
+                           allcategories=allcategories)
+
