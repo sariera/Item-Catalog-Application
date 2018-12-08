@@ -7,3 +7,8 @@ engine = create_engine('sqlite:///catalogs.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
+# Create dummy user
+User1 = User(name="im Robot", email="ar.rickxxx@gmail.com")
+session.add(User1)
+session.commit()
