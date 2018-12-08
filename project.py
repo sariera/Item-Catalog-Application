@@ -13,3 +13,14 @@ import httplib2
 import json
 from flask import make_response
 import requests
+
+app = Flask(__name__)
+CLIENT_ID = json.loads(
+    open('client_secrets.json', 'r').read())['web']['client_id']
+APPLICATION_NAME = "Catalog Application"
+
+engine = create_engine('sqlite:///catalogs.db')
+Base.metadata.bind = engine
+
+DBSession = sessionmaker(bind=engine)
+session = DBSession()
