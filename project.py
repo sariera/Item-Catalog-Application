@@ -274,3 +274,52 @@ def showItem(categories_id, items_id):
     else:  # if user is the creator, able to access update and delete the item
         return render_template('item.html', categories=categories, items=items)
 
+
+# Edit the specific item
+@app.route('/catalog/<int:categories_id>/<int:items_id>/edit',
+           methods=['GET', 'POST'])
+@login_required
+def editItem(categories_id, items_id):
+    editedItem = session.query(CategoryItem).filter_by(id=items_id).one()
+    # make sure user is the creator
+    if editedItem.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('You are not authorized"\
+         "to edit this item. Please create your own item in order to edit.');"\
+         "window.location = '/';}</script><body onload='myFunction()''>"
+    if request.method == 'POST':
+        if request.form['name'] == "":  # if name is empty it will be unchange
+            editedItem.name = editedItem.name
+        else:
+            editedItem.name = request.form['name']
+
+        # if description is empty it will return unchange
+        if request.form['description'] == "":
+            editedItem.description = editedItem.description
+        else:
+            editedItem.description = request.form['description']
+
+        if request.form['author'] == "":
+            editedItem.description = editedItem.description
+        else:
+            editedItem.description = request.form['author']
+
+        if request.form['preview'] == "":
+            editedItem.description = editedItem.description
+        else:
+            editedItem.description = request.form['preview']
+
+        # if category is empty it will return unchange
+        if request.form['categories_id'] == "":
+            editedItem.categories_id = editedItem.categories_id
+        else:
+            editedItem.categories_id = request.form['categories_id']
+
+        session.add(editedItem)
+        session.commit()
+        flash("item edited successfully!")
+        return redirect(url_for('showItem', categories_id=categories_id,
+                                items_id=items_id))
+    else:
+        return render_template('edititem.html', categories_id=categories_id,
+                               items_id=items_id, item=editedItem)
+
