@@ -182,3 +182,25 @@ def gdisconnect():
             json.dumps('Failed to revoke token for given user.', 400))
         response.headers['Content-Type'] = 'application/json'
         return response
+
+
+# JSON API
+@app.route('/catalog/JSON')
+def catalogJSON():
+    categorieslist = session.query(Categories).all()
+    return jsonify(CategoriesList=[r.serialize for r in categorieslist])
+
+
+@app.route('/catalog/<int:categories_id>/JSON')
+def categoryJSON(categories_id):
+    categories = session.query(Categories).filter_by(id=categories_id).one()
+    items = session.query(CategoryItem).filter_by(categories_id=categories.id)
+    return jsonify(CategoryItem=[i.serialize for i in items])
+
+
+@app.route('/catalog/<int:categories_id>/<int:items_id>/JSON')
+def itemJSON(categories_id, items_id):
+    categories = session.query(Categories).filter_by(id=categories_id).one()
+    items = session.query(CategoryItem).filter_by(id=items_id).one()
+    return jsonify(ItemDetails=[items.serialize])
+
