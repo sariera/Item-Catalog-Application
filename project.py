@@ -204,3 +204,15 @@ def itemJSON(categories_id, items_id):
     items = session.query(CategoryItem).filter_by(id=items_id).one()
     return jsonify(ItemDetails=[items.serialize])
 
+
+# Login Required function
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'username' in login_session:
+            return f(*args, **kwargs)
+        else:
+            flash("You are not allowed to access there")
+            return redirect('/login')
+    return decorated_function
+
